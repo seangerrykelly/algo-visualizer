@@ -12,14 +12,6 @@ export const SortingVisual = () => {
             <button onClick={() => setArray(generateArray(1,100))}>Generate</button>
             <button onClick={() => setArray(quickSort(array))}>Quick Sort</button>
             <BarChart values={array} />
-            <p>Array to be sorted: </p>
-            <div>
-                {array.map((value) => (
-                    <div>{value}</div>
-                ))}
-            </div>
-            
-
         </div>
     )
 }

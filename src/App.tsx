@@ -2,13 +2,15 @@ import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import { SortingVisual } from './components/sorting-visuals/SortingVisual';
+import { Home } from './components/home/Home';
+import { Nav } from './components/nav/Nav';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <SortingVisual />
-      </header>
+      <Nav />
+      <Home />
+      <SortingVisual />
     </div>
   );
 }
