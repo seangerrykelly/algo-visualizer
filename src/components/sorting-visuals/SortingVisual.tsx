@@ -10,6 +10,12 @@ export const SortingVisual = () => {
     const [steps, setSteps] = useState<number[][]>([]);
     const [currentStep, setCurrentStep] = useState<number>(0);
 
+    const handleClickGenerate = () => {
+        setArray(generateArray(1,100))
+        setSteps([])
+        setCurrentStep(0)
+    }
+
     const handleClickQuickSort = () => {
         const { sorted: sortedArray, steps: sortSteps } = quickSortSteps(array)
         setArray(sortedArray)
@@ -28,7 +34,7 @@ export const SortingVisual = () => {
     return (
         <div className="sortingVisualContainer">
             <div className="buttonContainer">
-                <button className="primaryButton" onClick={() => setArray(generateArray(1,100))}>Generate</button>
+                <button className="primaryButton" onClick={handleClickGenerate}>Generate</button>
                 <button className="primaryButton" onClick={handleClickQuickSort}>Quick Sort</button>
             </div>
             <BarChart values={steps[currentStep] || array} />
