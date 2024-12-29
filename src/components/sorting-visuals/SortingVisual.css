@@ -1,4 +1,40 @@
 .sortingVisualContainer {
     display: flex;
     flex-direction: column;
+    margin: 24px;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 12px;
+}
+
+.primaryButton {
+    background-color: #213555;
+    border: #213555 1px solid;
+    border-radius: 4px;
+    color: #F5EFE7;
+    cursor: pointer;
+    font-weight: 700;
+    max-width: 100px;
+    padding: 4px;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.primaryButton:hover {
+    background-color: #F5EFE7;
+    border: #F5EFE7 1px solid;
+    border-radius: 4px;
+    color: #213555;
+    cursor: pointer;
+    font-weight: 700;
+    max-width: 100px;
+    padding: 4px;
+    width: 100%;
+}
+
+.secondaryButton {
+    background-color: #213555;
+    color: #F5EFE7;
 }

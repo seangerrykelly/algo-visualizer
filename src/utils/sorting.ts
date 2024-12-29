@@ -1,4 +1,4 @@
-export const quickSort = (arr: number[]): number[] => {
+export const quickSort = (arr: number[], steps: number[][] = []): number[] => {
     if (arr.length <= 1) {
         return arr
     }
@@ -13,5 +13,16 @@ export const quickSort = (arr: number[]): number[] => {
             greater.push(arr[i])
         }
     }
-    return [...quickSort(lower), pivot, ...quickSort(greater)]
+
+    steps.push([...lower, pivot, ...greater])
+    console.log('curr steps: ', steps);
+
+    return [...quickSort(lower, steps), pivot, ...quickSort(greater, steps)]
 }
+
+export const quickSortSteps = (arr: number[]): { steps: number[][], sorted: number[]} => {
+    const steps: number[][] = []
+    const sortedArray = quickSort(arr, steps)
+    console.log('steps: ', steps)
+    return { steps, sorted: sortedArray }
+};

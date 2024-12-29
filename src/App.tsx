@@ -8,6 +8,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { SearchingVisual } from './components/searching-visuals/SearchingVisual';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sorting" element={<SortingVisual />} />
+        <Route path="/searching" element={<SearchingVisual />} />
       </Routes>
     </Router>
   );
