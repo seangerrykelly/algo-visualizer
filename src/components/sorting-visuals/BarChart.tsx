@@ -1,3 +1,5 @@
+import './BarChart.css'
+
 type BarChartProps = {
     values: number[]
 }
@@ -5,14 +7,14 @@ type BarChartProps = {
 export const BarChart = ({values}: BarChartProps) => {
     const maxValue = Math.max(...values)
     return (
-        <div>
+        <div className="barChartContainer">
             {values.map((value, index) => (
                 <div
                     key={index}
                     style={{
                         height: '20px',
                         width: `${(value / maxValue) * 100}%`,
-                        backgroundColor: 'blue',
+                        backgroundColor: '#3E5879',
                         textAlign: 'center',
                         color: 'white'
                     }}

@@ -1,17 +1,23 @@
 import React from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import { SortingVisual } from './components/sorting-visuals/SortingVisual';
 import { Home } from './components/home/Home';
 import { Nav } from './components/nav/Nav';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Nav />
-      <Home />
-      <SortingVisual />
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/sorting" element={<SortingVisual />} />
+      </Routes>
+    </Router>
   );
 }
 
