@@ -1,3 +1,20 @@
+export const bubbleSort = (arr: number[]): number[] => {
+    const sortedArray = [...arr]
+    for (let i = sortedArray.length - 1; i > 0; i--) {
+        let hasSwapped = false
+        for (let j = 0; j < i; j++) {
+            if (sortedArray[j] > sortedArray[j + 1]) {
+                [sortedArray[j + 1], sortedArray[j]] = [sortedArray[j], sortedArray[j + 1]]
+                hasSwapped = true
+            }
+        }
+        if (!hasSwapped) {
+            break
+        }
+    }
+    return sortedArray
+}
+
 export const quickSort = (arr: number[], steps: number[][] = []): number[] => {
     if (arr.length <= 1) {
         return arr
@@ -15,7 +32,6 @@ export const quickSort = (arr: number[], steps: number[][] = []): number[] => {
     }
 
     steps.push([...lower, pivot, ...greater])
-    console.log('curr steps: ', steps);
 
     return [...quickSort(lower, steps), pivot, ...quickSort(greater, steps)]
 }
@@ -23,6 +39,5 @@ export const quickSort = (arr: number[], steps: number[][] = []): number[] => {
 export const quickSortSteps = (arr: number[]): { steps: number[][], sorted: number[]} => {
     const steps: number[][] = []
     const sortedArray = quickSort(arr, steps)
-    console.log('steps: ', steps)
     return { steps, sorted: sortedArray }
 };

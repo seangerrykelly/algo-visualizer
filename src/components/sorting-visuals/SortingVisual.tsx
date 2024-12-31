@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { generateArray } from "../../utils/array"
-import { quickSortSteps } from "../../utils/sorting"
+import { bubbleSort, quickSortSteps } from "../../utils/sorting"
 import { BarChart } from "./BarChart"
 import './SortingVisual.css'
 
@@ -22,6 +22,10 @@ export const SortingVisual = () => {
         setSteps(sortSteps)
     }
 
+    const handleClickBubbleSort = () => {
+        setArray(bubbleSort(array))
+    }
+
     useEffect(() => {
         if (steps.length && currentStep < steps.length) {
           const timer = setTimeout(() => {
@@ -29,13 +33,14 @@ export const SortingVisual = () => {
           }, 500);
           return () => clearTimeout(timer); // Cleanup timeout
         }
-      }, [steps, currentStep]);
+      }, [steps, currentStep, array]);
 
     return (
         <div className="sortingVisualContainer">
             <div className="buttonContainer">
                 <button className="primaryButton" onClick={handleClickGenerate}>Generate</button>
                 <button className="primaryButton" onClick={handleClickQuickSort}>Quick Sort</button>
+                <button className="primaryButton" onClick={handleClickBubbleSort}>Bubble Sort</button>
             </div>
             <BarChart values={steps[currentStep] || array} />
         </div>
