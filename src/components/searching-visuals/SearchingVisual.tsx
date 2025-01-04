@@ -1,14 +1,13 @@
 import { useState } from "react"
-import { generateArray } from "../../utils/array"
+import { BinaryTree } from "./BinaryTree"
 
 export const SearchingVisual = () => {
 
-    const [array, setArray] = useState<number[]>(generateArray(1, 100))
 
     return (
         <div>
             Searching visualizer page
-            <button onClick={() => setArray(generateArray(1,100))}>Generate</button>
+            <BinaryTree />
         </div>
     )
 }

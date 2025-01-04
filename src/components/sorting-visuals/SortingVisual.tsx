@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { generateArray } from "../../utils/array"
-import { bubbleSort, quickSortSteps } from "../../utils/sorting"
+import { bubbleSort, insertionSort, mergeSort, quickSortSteps, selectionSort } from "../../utils/sorting"
 import { BarChart } from "./BarChart"
 import './SortingVisual.css'
 
@@ -22,8 +22,20 @@ export const SortingVisual = () => {
         setSteps(sortSteps)
     }
 
+    const handleClickMergeSort = () => {
+        setArray(mergeSort(array))
+    }
+
     const handleClickBubbleSort = () => {
         setArray(bubbleSort(array))
+    }
+
+    const handleClickSelectionSort = () => {
+        setArray(selectionSort(array))
+    }
+
+    const handleClickInsertionSort = () => {
+        setArray(insertionSort(array))
     }
 
     useEffect(() => {
@@ -40,7 +52,10 @@ export const SortingVisual = () => {
             <div className="buttonContainer">
                 <button className="primaryButton" onClick={handleClickGenerate}>Generate</button>
                 <button className="primaryButton" onClick={handleClickQuickSort}>Quick Sort</button>
+                <button className="primaryButton" onClick={handleClickMergeSort}>Merge Sort</button>
                 <button className="primaryButton" onClick={handleClickBubbleSort}>Bubble Sort</button>
+                <button className="primaryButton" onClick={handleClickSelectionSort}>Selection Sort</button>
+                <button className="primaryButton" onClick={handleClickInsertionSort}>Insertion Sort</button>
             </div>
             <BarChart values={steps[currentStep] || array} />
         </div>
