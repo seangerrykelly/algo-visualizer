@@ -17,7 +17,7 @@ export const SearchingVisual = () => {
     return (
         <div>
             <button className="primaryButton" onClick={handleClickGenerate}>Generate</button>
-            <BinaryTree />
+            {rootNode && <BinaryTree root={rootNode} />}
         </div>
     )
 }
