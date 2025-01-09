@@ -25,7 +25,6 @@ export const generateTree = (min: number, max: number): TreeNode => {
         } else if (options[index] == 'right') {
             currNode.right = newNode1
         } else {
-            console.log('both')
             const newNode2: TreeNode = {
                 value: Math.floor(Math.random() * (max - min + 1) + min)
             }
