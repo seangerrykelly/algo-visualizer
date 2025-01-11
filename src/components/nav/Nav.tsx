@@ -6,6 +6,7 @@ export const Nav = () => {
             <NavLinks>
                 <NavLink href="/sorting">Sorting</NavLink>
                 <NavLink href="/searching">Searching</NavLink>
+                <NavLink href="/pathfinding">Pathfinding</NavLink>
             </NavLinks>
         </NavBar>
     )

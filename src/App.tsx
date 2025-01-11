@@ -9,6 +9,7 @@ import {
   Route,
 } from "react-router-dom";
 import { SearchingVisual } from './components/searching-visuals/SearchingVisual';
+import { PathfindingVisual } from './components/pathfinding-visuals/PathfindingVisual';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/sorting" element={<SortingVisual />} />
         <Route path="/searching" element={<SearchingVisual />} />
+        <Route path="/pathfinding" element={<PathfindingVisual />} />
       </Routes>
     </Router>
   );
