@@ -1,10 +1,8 @@
 import styled from "styled-components";
-// import { NavLink as Link } from "react-router-dom";
-// Colour scheme comes from: https://colorhunt.co/palette/2135553e5879d8c4b6f5efe7
-
+import { Colors } from "../../theme/colors";
 
 export const NavBar = styled.nav`
-  background: #213555;
+  background: ${Colors.Blue.primary};
   font-family: monospace;
   height: 85px;
   display: flex;
@@ -17,7 +15,7 @@ export const NavBar = styled.nav`
 
 export const NavHomeLink = styled.a`
   align-self: center;
-  color: #F5EFE7;
+  color: ${Colors.Beige.secondary};
   cursor: pointer;
   height: min-content;
   text-decoration: none;
@@ -32,7 +30,7 @@ export const NavLinks = styled.ul`
 
 export const NavLink = styled.a`
   align-self: center;
-  color: #F5EFE7;
+  color: ${Colors.Beige.secondary};
   cursor: pointer;
   height: min-content;
   text-decoration: none;

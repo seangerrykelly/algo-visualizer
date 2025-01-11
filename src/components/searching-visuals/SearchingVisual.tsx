@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { BinaryTree } from "./BinaryTree"
 import { generateTree, TreeNode } from "../../utils/tree"
 import { bfs, dfs } from "../../utils/searching"
+import { Button } from "../shared/CommonStyles"
+import { ButtonContainer, SearchingVisualContainer } from "./SearchingVisualStyles"
 
 export const SearchingVisual = () => {
 
@@ -31,11 +33,13 @@ export const SearchingVisual = () => {
     }
 
     return (
-        <div>
-            <button className="primaryButton" onClick={handleClickGenerate}>Generate</button>
-            <button className="primaryButton" onClick={handleClickDepthFirstSearch}>Depth First Search</button>
-            <button className="primaryButton" onClick={handleClickBreadthFirstSearch}>Breadth First Search</button>
+        <SearchingVisualContainer>
+            <ButtonContainer>
+                <Button variant="primary" onClick={handleClickGenerate}>Generate</Button>
+                <Button variant="secondary" onClick={handleClickDepthFirstSearch}>Depth First Search</Button>
+                <Button variant="secondary" onClick={handleClickBreadthFirstSearch}>Breadth First Search</Button>
+            </ButtonContainer>
             {rootNode && <BinaryTree root={rootNode} />}
-        </div>
+        </SearchingVisualContainer>
     )
 }

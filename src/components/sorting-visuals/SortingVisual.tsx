@@ -2,7 +2,8 @@ import { useEffect, useState } from "react"
 import { generateArray } from "../../utils/array"
 import { bubbleSort, insertionSort, mergeSort, quickSortSteps, selectionSort } from "../../utils/sorting"
 import { BarChart } from "./BarChart"
-import './SortingVisual.css'
+import { ButtonContainer, SortingVisualContainer } from "./SortingVisualStyles"
+import { Button } from "../shared/CommonStyles"
 
 export const SortingVisual = () => {
 
@@ -48,16 +49,16 @@ export const SortingVisual = () => {
       }, [steps, currentStep, array]);
 
     return (
-        <div className="sortingVisualContainer">
-            <div className="buttonContainer">
-                <button className="primaryButton" onClick={handleClickGenerate}>Generate</button>
-                <button className="primaryButton" onClick={handleClickQuickSort}>Quick Sort</button>
-                <button className="primaryButton" onClick={handleClickMergeSort}>Merge Sort</button>
-                <button className="primaryButton" onClick={handleClickBubbleSort}>Bubble Sort</button>
-                <button className="primaryButton" onClick={handleClickSelectionSort}>Selection Sort</button>
-                <button className="primaryButton" onClick={handleClickInsertionSort}>Insertion Sort</button>
-            </div>
+        <SortingVisualContainer>
+            <ButtonContainer>
+                <Button variant="primary" onClick={handleClickGenerate}>Generate</Button>
+                <Button variant="secondary" onClick={handleClickQuickSort}>Quick Sort</Button>
+                <Button variant="secondary" onClick={handleClickMergeSort}>Merge Sort</Button>
+                <Button variant="secondary" onClick={handleClickBubbleSort}>Bubble Sort</Button>
+                <Button variant="secondary" onClick={handleClickSelectionSort}>Selection Sort</Button>
+                <Button variant="secondary" onClick={handleClickInsertionSort}>Insertion Sort</Button>
+            </ButtonContainer>
             <BarChart values={steps[currentStep] || array} />
-        </div>
+        </SortingVisualContainer>
     )
 }

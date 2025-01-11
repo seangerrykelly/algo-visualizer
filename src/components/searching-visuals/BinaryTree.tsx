@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { TreeNode } from "../../utils/tree"
-import './BinaryTree.css'
+import { BinaryTreeNode, NodeChild, NodeChildren, Line, NodeCircle } from "./BinaryTreeStyles"
 
 type BinaryTreeProps = {
     root?: TreeNode
@@ -12,22 +12,22 @@ export const BinaryTree = ({ root = undefined }: BinaryTreeProps) => {
         return null
 
     return (
-        <div className="treeNode">
-            <div className="nodeCircle">{rootNode.value}</div>
-            <div className="nodeChildren">
+        <BinaryTreeNode>
+            <NodeCircle>{rootNode.value}</NodeCircle>
+            <NodeChildren>
                 {rootNode.left && (
-                    <div className="child left">
-                        <div className="line" />
+                    <NodeChild>
+                        <Line isLeft={true} />
                         <BinaryTree root={rootNode.left} />
-                    </div>
+                    </NodeChild>
                 )}
                 {rootNode.right && (
-                    <div className="child right">
-                        <div className="line" />
+                    <NodeChild>
+                        <Line isLeft={false} />
                         <BinaryTree root={rootNode.right} />
-                    </div>
+                    </NodeChild>
                 )}
-            </div>
-        </div>
+            </NodeChildren>
+        </BinaryTreeNode>
     )
 }
