@@ -1,6 +1,11 @@
 import styled from "styled-components"
 import { Colors } from "../../theme/colors"
 
+interface GridCellProps {
+    inPath: boolean;
+    isWalkable: boolean;
+}
+
 export const GridContainer = styled.div`
     align-items: center;
     display: flex;
@@ -14,8 +19,14 @@ export const GridRow = styled.div`
     width: 100%;
 `
 
-export const GridCell = styled.div`
-    background-color: ${Colors.White};
+export const GridCell = styled.div<GridCellProps>`
+    background-color: 
+        ${(props) => props.inPath
+            ? Colors.Blue.secondary 
+            : props.isWalkable
+            ? Colors.White
+            : Colors.Black
+        };
     border: 1px solid ${Colors.Blue.primary};
     color: ${Colors.Blue.secondary};
     cursor: pointer;

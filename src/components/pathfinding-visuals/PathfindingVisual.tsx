@@ -1,26 +1,32 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Grid } from "./Grid"
 import { generateGrid } from "../../utils/grid"
 import { Button } from "../shared/CommonStyles"
 import { ButtonContainer, PathfindingVisualContainer } from "./PathfindingVisualStyles"
+import { aStar } from "../../utils/pathfinding"
 
 export const PathfindingVisual = () => {
 
     const [grid, setGrid] = useState<number[][]>([])
-    const [startCell, setStartCell] = useState<number[]>()
-    const [endCell, setEndCell] = useState<number[]>()
-
-    useEffect(() => {
-        // setStartCell([0,0])
-        // setEndCell([grid.length - 1, grid.length - 1])
-    }, [grid])
+    const [startCell, setStartCell] = useState<[number, number] | undefined>()
+    const [endCell, setEndCell] = useState<[number, number] | undefined>()
+    const [pathMap, setPathMap] = useState<Map<string, boolean>>()
 
     const handleClickGenerateGrid = () => {
-        setGrid(generateGrid(10, 10))
+        setGrid(generateGrid(20, 20))
+        setPathMap(new Map())
     }
 
     const handleClickAStar = () => {
-
+        if (startCell && endCell) {
+            const path = aStar(grid, startCell, endCell)
+            console.log('here is the path: ', path)
+            const map = new Map()
+            path?.forEach((cell) => {
+                map.set([cell.x, cell.y].toString(), true)
+            })
+            setPathMap(map)
+        }
     }
 
     const handleClickCell = (row: number, col: number) => {
@@ -28,6 +34,7 @@ export const PathfindingVisual = () => {
         console.log('col: ', col)
         if (!startCell || endCell) {
             setStartCell([row, col])
+            setEndCell(undefined)
         } else {
             setEndCell([row, col])
         }
@@ -42,7 +49,7 @@ export const PathfindingVisual = () => {
             </ButtonContainer>
             <p>Start: {startCell?.toString()}</p>
             <p>End: {endCell?.toString()}</p>
-            <Grid grid={grid} onClickCell={handleClickCell} />
+            <Grid grid={grid} onClickCell={handleClickCell} pathMap={pathMap} />
         </PathfindingVisualContainer>
     )
 }
