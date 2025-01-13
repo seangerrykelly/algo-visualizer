@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { generateArray } from "../../utils/array"
-import { bubbleSort, insertionSort, mergeSort, quickSortSteps, selectionSort } from "../../utils/sorting"
+import { bubbleSortSteps, insertionSort, mergeSort, quickSortSteps, selectionSort } from "../../utils/sorting"
 import { BarChart } from "./BarChart"
 import { ButtonContainer, SortingVisualContainer } from "./SortingVisualStyles"
 import { Button } from "../shared/CommonStyles"
@@ -28,7 +28,9 @@ export const SortingVisual = () => {
     }
 
     const handleClickBubbleSort = () => {
-        setArray(bubbleSort(array))
+        const { sorted: sortedArray, steps: sortSteps } = bubbleSortSteps(array)
+        setArray(sortedArray)
+        setSteps(sortSteps)
     }
 
     const handleClickSelectionSort = () => {

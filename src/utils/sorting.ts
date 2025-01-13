@@ -1,7 +1,7 @@
 // BASIC SORTING ALGORITHMS. All of these have time complexity of O(n^2)
 
 // Bubble Sort: Compare adjacent elements and swap them if they are out of order
-export const bubbleSort = (arr: number[]): number[] => {
+export const bubbleSort = (arr: number[], steps: number[][] = []): number[] => {
     const sortedArray = [...arr]
     for (let i = sortedArray.length - 1; i > 0; i--) {
         let hasSwapped = false
@@ -11,11 +11,21 @@ export const bubbleSort = (arr: number[]): number[] => {
                 hasSwapped = true
             }
         }
+
+        // Capture step to be used for animation
+        steps.push([...sortedArray])
+
         if (!hasSwapped) {
             break
         }
     }
     return sortedArray
+}
+
+export const bubbleSortSteps = (arr: number[]): { steps: number[][], sorted: number[] } => {
+    const steps: number[][] = []
+    const sortedArray = bubbleSort(arr, steps)
+    return { steps, sorted: sortedArray }
 }
 
 // Selection Sort: Select the smallest element repeatedly and move it to its correct position
@@ -60,7 +70,11 @@ export const insertionSort = (arr: number[]): number[] => {
 // DIVIDE AND CONQUER ALGORITHMS: These have time complexity of O(nlogn) on average, although quick sort is O(n^2) at worst
 
 // Quick Sort: Recursively partition the array into arrays greater than or less than the chosen pivot element
-export const quickSort = (arr: number[], steps: number[][] = []): number[] => {
+export const quickSort = (
+    arr: number[], 
+    steps: number[][] = [], 
+    fullArr: number[] = [...arr],
+): number[] => {
     if (arr.length <= 1) {
         return arr
     }
@@ -76,12 +90,19 @@ export const quickSort = (arr: number[], steps: number[][] = []): number[] => {
         }
     }
 
-    steps.push([...lower, pivot, ...greater])
+    const snapshot = [...fullArr]
 
-    return [...quickSort(lower, steps), pivot, ...quickSort(greater, steps)]
+    lower.forEach((value, i) => (fullArr[i] = value))
+    fullArr[lower.length] = pivot
+    greater.forEach((value, i) => (snapshot[lower.length + 1 + i] = value))
+
+    steps.push([...fullArr])
+
+    return [...quickSort(lower, steps, fullArr), pivot, ...quickSort(greater, steps, fullArr)]
 }
 
-export const quickSortSteps = (arr: number[]): { steps: number[][], sorted: number[]} => {
+// TODO: Fix issue where there are duplicate values in some of the step arrays
+export const quickSortSteps = (arr: number[]): { steps: number[][], sorted: number[] } => {
     const steps: number[][] = []
     const sortedArray = quickSort(arr, steps)
     return { steps, sorted: sortedArray }

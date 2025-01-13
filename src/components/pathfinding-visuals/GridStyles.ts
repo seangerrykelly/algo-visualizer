@@ -27,7 +27,7 @@ export const GridCell = styled.div<GridCellProps>`
             ? Colors.White
             : Colors.Black
         };
-    border: 1px solid ${Colors.Blue.primary};
+    border: 1px solid ${Colors.Black};
     color: ${Colors.Blue.secondary};
     cursor: pointer;
     height: 20px;
