@@ -29,7 +29,7 @@ export const bubbleSortSteps = (arr: number[]): { steps: number[][], sorted: num
 }
 
 // Selection Sort: Select the smallest element repeatedly and move it to its correct position
-export const selectionSort = (arr: number[]): number[] => {
+export const selectionSort = (arr: number[], steps: number[][] = []): number[] => {
     const sortedArray = [...arr]
     for (let i = 0; i < sortedArray.length; i++) {
         let minimum = i
@@ -43,12 +43,19 @@ export const selectionSort = (arr: number[]): number[] => {
         if (minimum !== i) {
             [sortedArray[i], sortedArray[minimum]] = [sortedArray[minimum], sortedArray[i]]
         }
+        steps.push([...sortedArray])
     }
     return sortedArray
 }
 
+export const selectionSortSteps = (arr: number[]): { steps: number[][], sorted: number[] } => {
+    const steps: number[][] = []
+    const sortedArray = selectionSort(arr, steps)
+    return { steps, sorted: sortedArray }
+}
+
 // Insertion Sort: Create the sorted list element by element by inserting values into their proper position
-export const insertionSort = (arr: number[]): number[] => {
+export const insertionSort = (arr: number[], steps: number[][] = []): number[] => {
     const sortedArray = [...arr]
 
     // Start at second element since we have nothing to compare the first one to
@@ -62,9 +69,16 @@ export const insertionSort = (arr: number[]): number[] => {
         }
 
         sortedArray[j + 1] = curr
+        steps.push([...sortedArray])
     }
 
     return sortedArray
+}
+
+export const insertionSortSteps = (arr: number[]): { steps: number[][], sorted: number[] } => {
+    const steps: number[][] = []
+    const sortedArray = insertionSort(arr, steps)
+    return { steps, sorted: sortedArray }
 }
 
 // DIVIDE AND CONQUER ALGORITHMS: These have time complexity of O(nlogn) on average, although quick sort is O(n^2) at worst
