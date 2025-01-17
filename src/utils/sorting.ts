@@ -123,7 +123,7 @@ export const quickSortSteps = (arr: number[]): { steps: number[][], sorted: numb
 };
 
 // Merge Sort: Recursively divide array into subarrays that have a single element, then merge them in order
-export const mergeSort = (arr: number[]): number[] => {
+export const mergeSort = (arr: number[], steps: number[][]): number[] => {
     const sortedArray = [...arr]
 
     if (sortedArray.length <= 1) {
@@ -134,8 +134,9 @@ export const mergeSort = (arr: number[]): number[] => {
     const leftArr = sortedArray.slice(0, midpoint)
     const rightArr = sortedArray.slice(midpoint)
 
-    const sortedLeft = mergeSort(leftArr)
-    const sortedRight = mergeSort(rightArr)
+    steps.push([...leftArr, midpoint, ...rightArr])
+    const sortedLeft = mergeSort(leftArr, steps)
+    const sortedRight = mergeSort(rightArr, steps)
 
     return merge(sortedLeft, sortedRight)
 }
@@ -157,3 +158,11 @@ const merge = (leftArr: number[], rightArr: number[]): number[] => {
 
     return mergedArr.concat(leftArr.slice(i)).concat(rightArr.slice(j))
 }
+
+// TODO: Fix issue where a 1 appears in the array even if it wasn't in the original.
+// TODO: Get full array at each step rather than the segmented one.
+export const mergeSortSteps = (arr: number[]): { steps: number[][], sorted: number[] } => {
+    const steps: number[][] = []
+    const sortedArray = mergeSort(arr, steps)
+    return { steps, sorted: sortedArray }
+};
