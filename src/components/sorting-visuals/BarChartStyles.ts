@@ -16,6 +16,7 @@ export const BarChartContainer = styled.div`
 
 export const Bar = styled.div<BarProps>`
     background-color: ${Colors.Blue.secondary};
+    border: 1px solid ${Colors.Blue.primary};
     color: ${Colors.White};
     height: 20px;
     text-align: center;

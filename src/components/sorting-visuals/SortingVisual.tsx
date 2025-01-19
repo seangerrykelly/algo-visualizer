@@ -7,12 +7,13 @@ import { Button } from "../shared/CommonStyles"
 
 export const SortingVisual = () => {
 
-    const [array, setArray] = useState<number[]>(generateArray(1, 100))
+    const [arraySize, setArraySize] = useState<number>(10)
+    const [array, setArray] = useState<number[]>(generateArray(arraySize, 1, 100))
     const [steps, setSteps] = useState<number[][]>([]);
     const [currentStep, setCurrentStep] = useState<number>(0);
 
     const handleClickGenerate = () => {
-        setArray(generateArray(1,100))
+        setArray(generateArray(arraySize, 1,100))
         setSteps([])
         setCurrentStep(0)
     }
@@ -47,6 +48,11 @@ export const SortingVisual = () => {
         setSteps(sortSteps)
     }
 
+    const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log('value: ', event.target.value)
+        setArraySize(parseInt(event.target.value))
+    }
+
     useEffect(() => {
         if (steps.length && currentStep < steps.length) {
           const timer = setTimeout(() => {
@@ -66,6 +72,15 @@ export const SortingVisual = () => {
                 <Button variant="secondary" onClick={handleClickSelectionSort}>Selection Sort</Button>
                 <Button variant="secondary" onClick={handleClickInsertionSort}>Insertion Sort</Button>
             </ButtonContainer>
+            <p>Array size: {arraySize}</p>
+            <input 
+                type="range" 
+                value={arraySize} 
+                min="1" 
+                max="100" 
+                onChange={handleSliderChange} 
+                style={{ width: '500px' }}
+            />
             <BarChart values={steps[currentStep] || array} />
         </SortingVisualContainer>
     )

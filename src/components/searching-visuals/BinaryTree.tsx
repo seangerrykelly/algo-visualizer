@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { TreeNode } from "../../utils/tree"
-import { BinaryTreeNode, NodeChild, NodeChildren, Line, NodeCircle } from "./BinaryTreeStyles"
+import { BinaryTreeContainer, BinaryTreeNode, NodeChild, NodeCircle } from "./BinaryTreeStyles"
 
 type BinaryTreeProps = {
     root?: TreeNode
@@ -8,26 +8,36 @@ type BinaryTreeProps = {
 
 export const BinaryTree = ({ root = undefined }: BinaryTreeProps) => {
     const [rootNode, setRootNode] = useState<TreeNode | undefined>(root)
-    if (!rootNode)
+    if (!rootNode) {
         return null
+    }
 
-    return (
-        <BinaryTreeNode>
-            <NodeCircle>{rootNode.value}</NodeCircle>
-            <NodeChildren>
-                {rootNode.left && (
-                    <NodeChild>
-                        <Line isLeft={true} />
-                        <BinaryTree root={rootNode.left} />
-                    </NodeChild>
-                )}
-                {rootNode.right && (
-                    <NodeChild>
-                        <Line isLeft={false} />
-                        <BinaryTree root={rootNode.right} />
-                    </NodeChild>
-                )}
-            </NodeChildren>
-        </BinaryTreeNode>
-    )
+    const renderTreeNode = (
+        node: TreeNode | undefined, 
+        isFirstChild: boolean,
+        isOnlyChild: boolean
+    ) => {
+        if (!node) {
+            return null
+        }
+
+        const hasTwoChildren = !!(node.left && node.right)
+        console.log(hasTwoChildren)
+
+        return (
+            <BinaryTreeNode 
+                isFirstChild={isFirstChild} 
+                hasTwoChildren={hasTwoChildren}
+                isOnlyChild={isOnlyChild}
+            >
+                <NodeCircle>{node.value}</NodeCircle>
+                <NodeChild>
+                    {node.left && renderTreeNode(node.left, true, !node.right)}
+                    {node.right && renderTreeNode(node.right, false, !node.left)}
+                </NodeChild>
+            </BinaryTreeNode>
+        )
+    }
+
+    return <BinaryTreeContainer>{renderTreeNode(rootNode, true, true)}</BinaryTreeContainer>
 }
