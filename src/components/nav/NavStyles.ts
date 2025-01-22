@@ -3,13 +3,16 @@ import { Colors } from "../../theme/colors";
 
 export const NavBar = styled.nav`
   background: ${Colors.Blue.primary};
+  box-sizing: border-box;
   font-family: monospace;
-  height: 85px;
+  height: 100%;
   display: flex;
   font-size: 18px;
   font-weight: 500;
   justify-content: space-between;
-  padding: 0.2rem calc((100vw - 1000px) / 2);
+  max-height: 100px;
+  padding: 0 12px;
+  width: 100vw;
   z-index: 12;
 `;
 
