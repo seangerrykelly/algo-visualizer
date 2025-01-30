@@ -7,14 +7,19 @@ import { ButtonContainer, SearchingVisualContainer } from "./SearchingVisualStyl
 
 export const SearchingVisual = () => {
 
+    const [nodeCount, setNodeCount] = useState<number>(10)
     const [rootNode, setRootNode] = useState<TreeNode>()
 
     useEffect(() => {
         console.log(rootNode)
     }, [rootNode])
 
+    const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setNodeCount(parseInt(event.target.value))
+    }
+
     const handleClickGenerate = () => {
-        setRootNode(generateTree(1, 20))
+        setRootNode(generateTree(nodeCount, 1, 20))
     }
 
     const handleClickDepthFirstSearch = () => {
@@ -39,6 +44,15 @@ export const SearchingVisual = () => {
                 <Button variant="secondary" onClick={handleClickDepthFirstSearch}>Depth First Search</Button>
                 <Button variant="secondary" onClick={handleClickBreadthFirstSearch}>Breadth First Search</Button>
             </ButtonContainer>
+            <p>Node count: {nodeCount}</p>
+            <input 
+                type="range" 
+                value={nodeCount} 
+                min="1" 
+                max="100" 
+                onChange={handleSliderChange} 
+                style={{ width: '500px' }}
+            />
             {rootNode && <BinaryTree root={rootNode} />}
         </SearchingVisualContainer>
     )

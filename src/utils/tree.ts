@@ -4,14 +4,14 @@ export type TreeNode = {
     right?: TreeNode;
 }
 
-export const generateTree = (min: number, max: number): TreeNode => {
+export const generateTree = (nodeCount: number, min: number, max: number): TreeNode => {
     const root: TreeNode = {
         value: min
     }
     let stack = [root]
     const options = ['left', 'right', 'both']
     
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < nodeCount; i++) {
         const currNode = stack.shift()
         if (!currNode)
             break

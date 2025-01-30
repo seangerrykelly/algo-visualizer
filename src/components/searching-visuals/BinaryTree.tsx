@@ -21,7 +21,6 @@ export const BinaryTree = ({ root = undefined }: BinaryTreeProps) => {
         }
 
         const hasTwoChildren = !!(node.left && node.right)
-        console.log(hasTwoChildren)
 
         return (
             <BinaryTreeNode 

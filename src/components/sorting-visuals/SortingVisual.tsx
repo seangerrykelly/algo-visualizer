@@ -49,7 +49,6 @@ export const SortingVisual = () => {
     }
 
     const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log('value: ', event.target.value)
         setArraySize(parseInt(event.target.value))
     }
 
