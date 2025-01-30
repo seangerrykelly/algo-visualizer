@@ -10,10 +10,6 @@ export const SearchingVisual = () => {
     const [nodeCount, setNodeCount] = useState<number>(10)
     const [rootNode, setRootNode] = useState<TreeNode>()
 
-    useEffect(() => {
-        console.log(rootNode)
-    }, [rootNode])
-
     const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setNodeCount(parseInt(event.target.value))
     }
@@ -33,7 +29,6 @@ export const SearchingVisual = () => {
         if (rootNode) {
             const traversal = bfs(rootNode)
             console.log('bfs traversal: ', traversal)
-
         }
     }
 

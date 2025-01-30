@@ -6,12 +6,12 @@ export type TreeNode = {
 
 export const generateTree = (nodeCount: number, min: number, max: number): TreeNode => {
     const root: TreeNode = {
-        value: min
+        value: Math.floor(Math.random() * (max - min + 1) + min)
     }
     let stack = [root]
     const options = ['left', 'right', 'both']
     
-    for (let i = 0; i < nodeCount; i++) {
+    for (let i = 0; i < nodeCount - 1; i++) {
         const currNode = stack.shift()
         if (!currNode)
             break

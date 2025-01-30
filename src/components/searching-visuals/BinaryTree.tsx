@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { TreeNode } from "../../utils/tree"
 import { BinaryTreeContainer, BinaryTreeNode, NodeChild, NodeCircle } from "./BinaryTreeStyles"
 
@@ -7,10 +6,6 @@ type BinaryTreeProps = {
 }
 
 export const BinaryTree = ({ root = undefined }: BinaryTreeProps) => {
-    const [rootNode, setRootNode] = useState<TreeNode | undefined>(root)
-    if (!rootNode) {
-        return null
-    }
 
     const renderTreeNode = (
         node: TreeNode | undefined, 
@@ -36,5 +31,5 @@ export const BinaryTree = ({ root = undefined }: BinaryTreeProps) => {
         )
     }
 
-    return <BinaryTreeContainer>{renderTreeNode(rootNode, true)}</BinaryTreeContainer>
+    return <BinaryTreeContainer>{renderTreeNode(root, true)}</BinaryTreeContainer>
 }
