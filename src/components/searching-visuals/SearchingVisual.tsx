@@ -46,7 +46,7 @@ export const SearchingVisual = () => {
                 min="1" 
                 max="100" 
                 onChange={handleSliderChange} 
-                style={{ width: '500px' }}
+                style={{ maxWidth: '100vw' }}
             />
             {rootNode && <BinaryTree root={rootNode} />}
         </SearchingVisualContainer>

@@ -78,7 +78,7 @@ export const SortingVisual = () => {
                 min="1" 
                 max="100" 
                 onChange={handleSliderChange} 
-                style={{ width: '500px' }}
+                style={{ maxWidth: '100vw' }}
             />
             <BarChart values={steps[currentStep] || array} />
         </SortingVisualContainer>

@@ -14,6 +14,10 @@ export const NavBar = styled.nav`
   padding: 0 12px;
   width: 100vw;
   z-index: 12;
+
+  @media (min-width: 768px) {
+    justify-content: space-around;
+  }
 `;
 
 export const NavHomeLink = styled.a`
@@ -25,10 +29,30 @@ export const NavHomeLink = styled.a`
 `;
 
 export const NavLinks = styled.ul`
-  align-self: center;
-  display: flex;
-  font-size: 14px;
-  gap: 24px;
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  background: ${Colors.Blue.secondary};
+  position: absolute;
+  right: 0;
+  max-width: 200px;
+  padding: 1rem;
+  border-radius: 8px;
+
+  @media (min-width: 768px) {
+    align-self: center;
+    background: ${Colors.Blue.primary};
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 0;
+    position: relative;
+    font-size: 14px;
+  }
+    
+  &.open {
+    display: flex;
+  }
 `;
 
 export const NavLink = styled.a`
@@ -37,4 +61,16 @@ export const NavLink = styled.a`
   cursor: pointer;
   height: min-content;
   text-decoration: none;
+`;
+
+export const NavMenuMobileButton = styled.button`
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: block;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;

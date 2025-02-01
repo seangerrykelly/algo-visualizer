@@ -7,13 +7,18 @@ import { aStar } from "../../utils/pathfinding"
 
 export const PathfindingVisual = () => {
 
+    const [gridSize, setGridSize] = useState<number>(10)
     const [grid, setGrid] = useState<number[][]>([])
     const [startCell, setStartCell] = useState<[number, number] | undefined>()
     const [endCell, setEndCell] = useState<[number, number] | undefined>()
     const [pathMap, setPathMap] = useState<Map<string, boolean>>()
 
+    const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setGridSize(parseInt(event.target.value))
+    }
+
     const handleClickGenerateGrid = () => {
-        setGrid(generateGrid(20, 20))
+        setGrid(generateGrid(gridSize, gridSize))
         setPathMap(new Map())
     }
 
@@ -47,6 +52,15 @@ export const PathfindingVisual = () => {
                 <Button variant="primary" onClick={handleClickGenerateGrid}>Generate</Button>
                 <Button variant="secondary" onClick={handleClickAStar}>A* Algorithm</Button>
             </ButtonContainer>
+            <p>Node count: {gridSize}</p>
+            <input 
+                type="range" 
+                value={gridSize} 
+                min="1" 
+                max="100" 
+                onChange={handleSliderChange} 
+                style={{ maxWidth: '100vw' }}
+            />
             <p>Start: {startCell?.toString()}</p>
             <p>End: {endCell?.toString()}</p>
             <Grid grid={grid} onClickCell={handleClickCell} pathMap={pathMap} />
