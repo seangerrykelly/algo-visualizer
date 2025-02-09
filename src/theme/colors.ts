@@ -8,5 +8,9 @@ export const Colors = {
         primary: "#213555",
         secondary: "#3E5879",
     },
+    Grey: {
+        primary: "#aaaaaa",
+        secondary: "#bbbbbb",
+    },
     White: "#FFFFFF",
 }

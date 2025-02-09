@@ -21,4 +21,11 @@ export const Button = styled.button<ButtonProps>`
         background-color: ${(props) => props.variant === 'primary' ? `${Colors.White};` : `${Colors.Blue.primary};`}
         color: ${(props) => props.variant === 'primary' ? `${Colors.Blue.primary};` : `${Colors.White};`}
     }
+    
+    &:disabled {
+        background-color: ${Colors.Grey.secondary};
+        color: ${Colors.White};
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
 `

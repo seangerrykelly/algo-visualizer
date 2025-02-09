@@ -12,3 +12,14 @@ export const ButtonContainer = styled.div`
     gap: 12px;
     overflow-x: scroll;
 `
+
+export const ControlsContainer = styled.div`
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 12px;
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+    }
+
+`
