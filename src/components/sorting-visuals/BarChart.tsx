@@ -9,9 +9,7 @@ export const BarChart = ({values}: BarChartProps) => {
     return (
         <BarChartContainer className="barChartContainer">
             {values.map((value, index) => (
-                <Bar key={index} maxValue={maxValue} value={value}>
-                    {value}
-                </Bar>
+                <Bar key={index} maxValue={maxValue} value={value} barCount={values.length} />
             ))}
         </BarChartContainer>
     )

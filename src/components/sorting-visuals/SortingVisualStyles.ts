@@ -10,4 +10,5 @@ export const SortingVisualContainer = styled.div`
 export const ButtonContainer = styled.div`
     display: flex;
     gap: 12px;
+    overflow-x: scroll;
 `

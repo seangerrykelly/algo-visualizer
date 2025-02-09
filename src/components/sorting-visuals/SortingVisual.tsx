@@ -56,7 +56,7 @@ export const SortingVisual = () => {
         if (steps.length && currentStep < steps.length) {
           const timer = setTimeout(() => {
             setCurrentStep((prev) => prev + 1);
-          }, 500);
+          }, 300);
           return () => clearTimeout(timer); // Cleanup timeout
         }
       }, [steps, currentStep, array]);
