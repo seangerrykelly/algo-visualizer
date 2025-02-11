@@ -6,7 +6,10 @@ export const ButtonContainer = styled.div`
 `
 
 export const PathfindingVisualContainer = styled.div`
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     margin: 24px;
+    max-height: calc(100vh - 48px);
+    max-width: calc(100vw - 48px);
 `

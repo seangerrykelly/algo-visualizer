@@ -34,9 +34,10 @@ export const PathfindingVisual = () => {
         }
     }
 
-    const handleClickCell = (row: number, col: number) => {
-        console.log('row: ', row)
-        console.log('col: ', col)
+    const handleClickCell = (row: number, col: number, value: number) => {
+        if (value !== 0) {
+            return
+        }
         if (!startCell || endCell) {
             setStartCell([row, col])
             setEndCell(undefined)

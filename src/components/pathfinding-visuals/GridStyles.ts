@@ -6,20 +6,24 @@ interface GridCellProps {
     isWalkable: boolean;
 }
 
-export const GridContainer = styled.div`
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+export const GridContainer = styled.div<{ gridSize: number }>`
+    align-self: center;
+    display: grid;
+    gap: 0;
+    grid-template-columns: ${({ gridSize }) => `repeat(${gridSize}, 1fr)`};
+    grid-template-rows: ${({ gridSize }) => `repeat(${gridSize}, 1fr)`};
+    height: 80vmin;
+    max-height: 500px;
+    max-width: 500px;
+    width: 80vmin;
 `
 
 export const GridRow = styled.div`
-    display: flex;
-    flex-direction: row;
-    max-width: 500px;
-    width: 100%;
+    display: contents;
 `
 
 export const GridCell = styled.div<GridCellProps>`
+    align-items: center;
     background-color: 
         ${(props) => props.inPath
             ? Colors.Blue.secondary 
@@ -30,12 +34,19 @@ export const GridCell = styled.div<GridCellProps>`
     border: 1px solid ${Colors.Black};
     color: ${Colors.Blue.secondary};
     cursor: pointer;
-    height: 20px;
+    display: flex;
+    height: 100%;
     text-align: center;
-    width: 20px;
+    width: 100%;
 
-    &:hover {
-        background-color: ${Colors.Blue.secondary};
-        color: ${Colors.White};
+    ${(props) => props.isWalkable ? `
+        &:hover {
+            background-color: ${Colors.Blue.secondary};
+            color: ${Colors.White};
+        }
+        `
+        : `
+        cursor: not-allowed;
+        `
     }
 `

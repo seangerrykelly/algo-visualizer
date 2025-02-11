@@ -9,12 +9,12 @@ type GridProps = {
 export const Grid = ({grid = [], pathMap, onClickCell}: GridProps) => {
 
     return (
-        <GridContainer>
+        <GridContainer gridSize={grid.length}>
             {grid.map((row, rowIndex) => (
                 <GridRow>
                     {row.map((cell, colIndex) => (
                         <GridCell 
-                            onClick={() => onClickCell(rowIndex, colIndex)}
+                            onClick={() => onClickCell(rowIndex, colIndex, cell)}
                             isWalkable={cell === 0}
                             inPath={pathMap ? pathMap.has([rowIndex, colIndex].toString()) : false} 
                         />
