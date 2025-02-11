@@ -25,7 +25,6 @@ export const PathfindingVisual = () => {
     const handleClickAStar = () => {
         if (startCell && endCell) {
             const path = aStar(grid, startCell, endCell)
-            console.log('here is the path: ', path)
             const map = new Map()
             path?.forEach((cell) => {
                 map.set([cell.x, cell.y].toString(), true)
@@ -58,7 +57,7 @@ export const PathfindingVisual = () => {
                 type="range" 
                 value={gridSize} 
                 min="1" 
-                max="100" 
+                max="50" 
                 onChange={handleSliderChange} 
                 style={{ maxWidth: '100vw' }}
             />

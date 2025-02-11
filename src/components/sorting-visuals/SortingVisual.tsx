@@ -14,6 +14,16 @@ export const SortingVisual = () => {
     const [currentStep, setCurrentStep] = useState<number>(0);
     const [selectedSort, setSelectedSort] = useState<(() => void) | null>(null)
 
+    // Use setTimeout to animate the sorting algorithm
+    useEffect(() => {
+        if (steps.length && currentStep < steps.length) {
+          const timer = setTimeout(() => {
+            setCurrentStep((prev) => prev + 1)
+          }, 300)
+          return () => clearTimeout(timer) // Cleanup timeout
+        }
+    }, [steps, currentStep, array])
+
     const handleClickGenerateButton = () => {
         setArray(generateArray(arraySize, 1,100))
         setSteps([])
@@ -67,15 +77,6 @@ export const SortingVisual = () => {
     const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setArraySize(parseInt(event.target.value))
     }
-
-    useEffect(() => {
-        if (steps.length && currentStep < steps.length) {
-          const timer = setTimeout(() => {
-            setCurrentStep((prev) => prev + 1);
-          }, 300);
-          return () => clearTimeout(timer); // Cleanup timeout
-        }
-      }, [steps, currentStep, array]);
 
     return (
         <SortingVisualContainer>
