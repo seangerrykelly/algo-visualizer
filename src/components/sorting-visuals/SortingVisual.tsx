@@ -12,7 +12,8 @@ export const SortingVisual = () => {
     const [array, setArray] = useState<number[]>(generateArray(arraySize, 1, 100))
     const [steps, setSteps] = useState<number[][]>([]);
     const [currentStep, setCurrentStep] = useState<number>(0);
-    const [selectedSort, setSelectedSort] = useState<(() => void) | null>(null)
+    const [selectedSort, setSelectedSort] = useState<((arr: number[]) => { steps: number[][], sorted: number[] }) | null>(null)
+    const [shouldSort, setShouldSort] = useState(false)
 
     // Use setTimeout to animate the sorting algorithm
     useEffect(() => {
@@ -24,44 +25,40 @@ export const SortingVisual = () => {
         }
     }, [steps, currentStep, array])
 
+    useEffect(() => {
+        if (shouldSort && array.length > 0 && selectedSort) {
+          const { sorted, steps: sortSteps } = selectedSort(array)
+          setArray(sorted)
+          setSteps(sortSteps)
+          setShouldSort(false)
+        }
+    }, [shouldSort, array, selectedSort])
+
     const handleClickGenerateButton = () => {
-        setArray(generateArray(arraySize, 1,100))
+        setArray(() => generateArray(arraySize, 1,100))
         setSteps([])
         setCurrentStep(0)
+        setShouldSort(false)
     }
 
-    const handleClickQuickSort = () => {
-        const { sorted: sortedArray, steps: sortSteps } = quickSortSteps(array)
-        setArray(sortedArray)
-        setSteps(sortSteps)
-    }
-
-    const handleClickMergeSort = () => {
-        const { sorted: sortedArray, steps: sortSteps } = mergeSortSteps(array)
-        setArray(sortedArray)
-        setSteps(sortSteps)
-    }
-
-    const handleClickBubbleSort = () => {
-        const { sorted: sortedArray, steps: sortSteps } = bubbleSortSteps(array)
-        setArray(sortedArray)
-        setSteps(sortSteps)
-    }
-
-    const handleClickSelectionSort = () => {
-        const { sorted: sortedArray, steps: sortSteps } = selectionSortSteps(array)
-        setArray(sortedArray)
-        setSteps(sortSteps)
-    }
-
-    const handleClickInsertionSort = () => {
-        const { sorted: sortedArray, steps: sortSteps } = insertionSortSteps(array)
-        setArray(sortedArray)
-        setSteps(sortSteps)
-    }
+    const handleClickQuickSort = (arr: number[]) => {
+        return quickSortSteps(arr)
+      }
+      const handleClickMergeSort = (arr: number[]) => {
+        return mergeSortSteps(arr)
+      }
+      const handleClickBubbleSort = (arr: number[]) => {
+        return bubbleSortSteps(arr)
+      }
+      const handleClickSelectionSort = (arr: number[]) => {
+        return selectionSortSteps(arr)
+      }
+      const handleClickInsertionSort = (arr: number[]) => {
+        return insertionSortSteps(arr)
+      }
 
     // Map the chosen option from the select to its relevant sorting function
-    const sortingMethods: { [key: string]: () => void } = {
+    const sortingMethods: { [key: string]: (arr: number[]) => { steps: number[][], sorted: number[] } } = {
         quickSort: handleClickQuickSort,
         mergeSort: handleClickMergeSort,
         bubbleSort: handleClickBubbleSort,
@@ -78,6 +75,12 @@ export const SortingVisual = () => {
         setArraySize(parseInt(event.target.value))
     }
 
+    const handleClickSortButton = () => {
+        if (selectedSort) {
+            setShouldSort(true)
+        }
+    }
+
     return (
         <SortingVisualContainer>
             <ControlsContainer>
@@ -85,7 +88,7 @@ export const SortingVisual = () => {
                     <Button variant="primary" onClick={handleClickGenerateButton}>
                         <ShuffleIcon />
                     </Button>
-                    <Button variant="primary" onClick={() => selectedSort && selectedSort()} disabled={!selectedSort}>
+                    <Button variant="primary" onClick={handleClickSortButton} disabled={!selectedSort}>
                         <PlayIcon />
                     </Button>
                 </ButtonContainer>

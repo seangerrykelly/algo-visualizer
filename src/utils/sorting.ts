@@ -2,7 +2,9 @@
 
 // Bubble Sort: Compare adjacent elements and swap them if they are out of order
 export const bubbleSort = (arr: number[], steps: number[][] = []): number[] => {
+    console.log('curr array: ', arr)
     const sortedArray = [...arr]
+    console.log('curr sorted array: ', sortedArray)
     for (let i = sortedArray.length - 1; i > 0; i--) {
         let hasSwapped = false
         for (let j = 0; j < i; j++) {
