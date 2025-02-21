@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { generateArray } from "../../utils/array"
-import { bubbleSortSteps, insertionSortSteps, mergeSort, mergeSortSteps, quickSortSteps, selectionSortSteps } from "../../utils/sorting"
+import { bubbleSortSteps, insertionSortSteps, mergeSortSteps, quickSortSteps, selectionSortSteps } from "../../utils/sorting"
 import { BarChart } from "./BarChart"
 import { ButtonContainer, ControlsContainer, SortingVisualContainer } from "./SortingVisualStyles"
 import { Button } from "../shared/CommonStyles"

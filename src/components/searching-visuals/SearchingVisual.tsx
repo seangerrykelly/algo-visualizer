@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { BinaryTree } from "./BinaryTree"
 import { generateTree, TreeNode } from "../../utils/tree"
 import { bfs, dfs } from "../../utils/searching"
