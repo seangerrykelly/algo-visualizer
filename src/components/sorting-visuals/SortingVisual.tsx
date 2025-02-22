@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { generateArray } from "../../utils/array"
+import { generateArray, generateRandomElement } from "../../utils/array"
 import { bubbleSortSteps, insertionSortSteps, mergeSortSteps, quickSortSteps, selectionSortSteps } from "../../utils/sorting"
 import { BarChart } from "./BarChart"
 import { ButtonContainer, ControlsContainer, SortingVisualContainer } from "./SortingVisualStyles"
@@ -72,7 +72,23 @@ export const SortingVisual = () => {
     }
 
     const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setArraySize(parseInt(event.target.value))
+        const newSize = parseInt(event.target.value)
+
+        if (newSize < arraySize) {
+            // Remove items from array
+            setArray(array.slice(0, newSize))
+        } else {
+            // Add random elements to get to new size
+            const diff = newSize - arraySize
+            const newArray = array
+            for (let i = 0; i < diff; i++) {
+                newArray.push(generateRandomElement(1, 100))
+            }
+            setArray(newArray)
+        }
+
+        setArraySize(newSize)
+
     }
 
     const handleClickSortButton = () => {
