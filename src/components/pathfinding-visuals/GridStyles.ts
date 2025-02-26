@@ -32,10 +32,11 @@ export const GridCell = styled.div<GridCellProps>`
             : Colors.Black
         };
     border: 1px solid ${Colors.Black};
-    color: ${Colors.Blue.secondary};
+    color: ${Colors.Black};
     cursor: pointer;
     display: flex;
     height: 100%;
+    justify-content: center;
     text-align: center;
     width: 100%;
 

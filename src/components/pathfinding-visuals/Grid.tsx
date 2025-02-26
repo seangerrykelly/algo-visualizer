@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react"
 import { GridCell, GridContainer, GridRow } from './GridStyles'
+import { PinIcon } from "lucide-react"
 
 type GridProps = {
     grid?: number[][]
     pathMap?: Map<string, boolean>
     onClickCell: Function
+    startCell?: [number, number]
+    endCell?: [number, number]
 }
 
-export const Grid = ({grid = [], pathMap, onClickCell}: GridProps) => {
+export const Grid = ({grid = [], pathMap, onClickCell, startCell, endCell}: GridProps) => {
 
     const [animatedPath, setAnimatedPath] = useState(new Set<string>())
 
@@ -31,24 +34,32 @@ export const Grid = ({grid = [], pathMap, onClickCell}: GridProps) => {
                 }
                 return new Set(Array.from(prev).concat(pathArray[index]))
             })
-            index++
+            index += 1
         }, 300)
         return () => clearInterval(interval)
     }, [pathMap])
+
+    const isStartOrEnd = (currRow: number, currCol: number, cell?: [number, number]): boolean => {
+        return !!cell && cell[0] === currRow && cell[1] === currCol
+    }
 
     return (
         <GridContainer gridSize={grid.length}>
             {grid.map((row, rowIndex) => (
                 <GridRow>
                     {row.map((cell, colIndex) => {
-
                         const inPath = animatedPath.has([rowIndex, colIndex].toString())
+                        const isStart = isStartOrEnd(rowIndex, colIndex, startCell)
+                        const isEnd = isStartOrEnd(rowIndex, colIndex, endCell)
+
                         return (     
                             <GridCell 
                                 onClick={() => onClickCell(rowIndex, colIndex, cell)}
                                 isWalkable={cell === 0}
                                 inPath={inPath}
-                            />
+                            >
+                                {(isStart || isEnd) && <PinIcon />}
+                            </GridCell>
                         )
                         })}
                 </GridRow>

@@ -50,9 +50,9 @@ export const PathfindingVisual = () => {
             <p>Pathfinding</p>
             <ButtonContainer>
                 <Button variant="primary" onClick={handleClickGenerateGrid}>Generate</Button>
-                <Button variant="secondary" onClick={handleClickAStar}>A* Algorithm</Button>
+                <Button disabled={!startCell || !endCell} variant="secondary" onClick={handleClickAStar}>A* Algorithm</Button>
             </ButtonContainer>
-            <p>Node count: {gridSize}</p>
+            <p>Grid size: {gridSize}</p>
             <input 
                 type="range" 
                 value={gridSize} 
@@ -61,9 +61,14 @@ export const PathfindingVisual = () => {
                 onChange={handleSliderChange} 
                 style={{ maxWidth: '100vw' }}
             />
-            <p>Start: {startCell?.toString()}</p>
-            <p>End: {endCell?.toString()}</p>
-            <Grid grid={grid} onClickCell={handleClickCell} pathMap={pathMap} />
+            <p>Please pick a cell to start and end at</p>
+            <Grid 
+                grid={grid} 
+                onClickCell={handleClickCell} 
+                pathMap={pathMap} 
+                startCell={startCell}
+                endCell={endCell}
+            />
         </PathfindingVisualContainer>
     )
 }

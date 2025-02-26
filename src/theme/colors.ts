@@ -12,5 +12,8 @@ export const Colors = {
         primary: "#aaaaaa",
         secondary: "#bbbbbb",
     },
+    Green: {
+        primary: '#008000',
+    },
     White: "#FFFFFF",
 }
